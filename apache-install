@@ -1,0 +1,37 @@
+Install apache
+yum install httpd -y
+
+start apache
+systemctl start httpd
+
+check apache status
+systemctl status httpd
+ps -ef | grep httpd
+netstat -anp | grep -w 80
+
+enable apache
+systemctl enable httpd
+
+Change apache port number from 80 to 10001 then restart apache
+
+[root@linuxhost01 ~]# find / -name httpd.conf
+/etc/httpd/conf/httpd.conf
+
+vi /etc/httpd/httpd.conf
+
+[root@linuxhost01 ~]# grep 10001 /etc/httpd/conf/httpd.conf
+Listen 10001
+
+httpd -t
+
+systemctl stop httpd
+systemctl start httpd
+
+curl http://linuxhost01:10001
+
+disable firewall
+
+[root@linuxhost01 ~]# systemctl stop firewalld
+
+
+
